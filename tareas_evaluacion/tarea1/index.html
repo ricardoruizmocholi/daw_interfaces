@@ -61,6 +61,7 @@
             width: 10%;
             height: 10%;
             display: block;
+            transition: transform 0.6s ease; /* transición suave del "baile" */
         }
 
         .destacado .texto {
@@ -100,7 +101,7 @@
     <!-- ===== SECCIÓN DESTACADA ===== -->
     <main>
         <section class="destacado" id="destacado">
-            <img src="Sherma_Singing.webp" alt="Imagen destacada">
+            <img id="imagenBailarina" src="Sherma_Singing.webp" alt="Imagen destacada">
             <div class="texto">
                 <h1>Sherma cantando</h1>
                 <p>Haz clic en la imagen para escuchar un sonido</p>
@@ -149,6 +150,15 @@
 
         // Inicializar al cargar
         cambiarGradiente();
+
+        // ==== EFECTO DE BAILE (INVERTIR IMAGEN EN X) ====
+        const imagen = document.getElementById("imagenBailarina");
+        let invertida = false;
+
+        setInterval(() => {
+        invertida = !invertida;
+        imagen.style.transform = invertida ? "scaleX(-1)" : "scaleX(1)";
+        }, 1000);
     </script>
 
 </body>
