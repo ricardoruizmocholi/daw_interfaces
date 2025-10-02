@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página con menú, destacado y audio</title>
+
+    <style>
+        :root {
+            --color-fondo: #f5f5f5;
+            --color-primario: #333;
+            --color-secundario: #0077cc;
+            --color-texto: #fff;
+            --tamano-menu: 18px;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 1s ease; /* Transición suave */
+        }
+
+        header {
+            background-color: var(--color-primario);
+            padding: 15px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: var(--color-texto);
+            text-decoration: none;
+            font-size: var(--tamano-menu);
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color: var(--color-secundario);
+        }
+
+        .destacado {
+            position: relative;
+            text-align: center;
+            color: var(--color-texto);
+            cursor: pointer; /* Indica que se puede hacer clic */
+        }
+
+        .destacado img {
+            max-width: 600px;
+            margin: 200px auto;
+            width: 10%;
+            height: 10%;
+            display: block;
+        }
+
+        .destacado .texto {
+            position: absolute;
+            top: 147%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.5);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .destacado .texto h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        .destacado .texto p {
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER + MENÚ ===== -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Servicios</a></li>
+                <li><a href="#">Proyectos</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ===== SECCIÓN DESTACADA ===== -->
+    <main>
+        <section class="destacado" id="destacado">
+            <img src="Sherma_Singing.webp" alt="Imagen destacada">
+            <div class="texto">
+                <h1>Sherma cantando</h1>
+                <p>Haz clic en la imagen para escuchar un sonido</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== SCRIPT DE AUDIO ===== -->
+    <script>
+        // Lista de pistas disponibles
+        const pistas = [
+            "Sherma-Remix.mp3",
+            "shermasong.mp3"
+        ];
+
+        let audioActual = null; // Para controlar si ya hay uno sonando
+
+        document.getElementById("destacado").addEventListener("click", () => {
+            // Si había un audio sonando, detenerlo
+            if (audioActual) {
+                audioActual.pause();
+                audioActual.currentTime = 0;
+            }
+
+            // Elegir una pista aleatoria
+            const pistaAleatoria = pistas[Math.floor(Math.random() * pistas.length)];
+
+            // Crear nuevo objeto de audio
+            audioActual = new Audio(pistaAleatoria);
+            audioActual.play();
+        });
+
+        // ==== GRADIENTE ALEATORIO ====
+        function colorAleatorio() {
+            return `rgb(${Math.floor(Math.random()*256)}, ${Math.floor(Math.random()*256)}, ${Math.floor(Math.random()*256)})`;
+        }
+
+        function cambiarGradiente() {
+            const color1 = colorAleatorio();
+            const color2 = colorAleatorio();
+            document.body.style.background = `linear-gradient(135deg, ${color1}, ${color2})`;
+        }
+
+        // Cambiar cada segundo
+        setInterval(cambiarGradiente, 1000);
+
+        // Inicializar al cargar
+        cambiarGradiente();
+    </script>
+
+</body>
+</html>
