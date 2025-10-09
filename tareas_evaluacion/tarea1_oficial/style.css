@@ -1,0 +1,90 @@
+body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 1s ease; /* Transición suave */
+        }
+
+header {
+            background-color: #333;
+            padding: 15px 0;
+            position: sticky;
+        }
+
+nav ul{
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+
+}
+nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+        }
+nav ul li a:hover {
+            color: var(--color-secundario);
+            transform: translateY(5%);
+        }
+#destacada img{
+
+    max-width: 600px;
+    margin: 200px auto;
+    width: 50%;
+    height: 50%;
+    display: block;
+    transition: transform 0.3 ease;
+
+}
+
+#destacada #texto{
+
+    position: absolute;
+    top: 71%;
+    left: 40.5%; 
+    background: rgba(0,0,0,0.5);
+    padding: 20px;
+    border-radius: 10px;
+
+}
+ h3 {
+            font-size: 2.5em;
+            margin: 0;
+            text-align: center;
+            color: aliceblue;
+        }
+ p {
+            font-size: 1.5em;
+            margin: 0;
+            color: aliceblue;
+
+        }
+.tropa{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    margin-top: -5%;
+}
+
+
+.tropa div{
+    padding: 4%;
+}
+#caballero{
+    width: 125%;
+    height: 125%;
+}
+#trobio{
+
+    width: 95%;
+    height: 95%;
+    margin-bottom: 24%;
+}

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!--
+
+    Enunciado paso a paso
+
+Estructura básica de una página web: Crea un archivo HTML con una estructura básica que incluya un header, un main y una sección destacado. Utiliza los elementos que ya tienes disponibles, como el archivo 002-bloques.html.
+
+Menú de navegación: En la sección header, crea un menú de navegación con varias opciones (menu). Utiliza los elementos del archivo 005-menu.html como guía.
+
+Sección destacada: Dentro de la sección destacado, añade una imagen y un texto que destaquen el contenido principal de tu página web. Puedes usar la imagen hero.jpg y personaliza el texto según tus preferencias.
+
+Estilo del menú: Añade estilos CSS para centrar el menú (006-centrar.html) y ajustar su tamaño y color (012-estilo del heroe.html). Utiliza variables de CSS para mantener un estilo consistente.
+
+Destacado visual: En la sección destacado, utiliza estilos para destacar el contenido (009-estilo del destacado.html) y asegúrate de que sea atractivo y fácilmente visible.
+
+Restricciones
+
+Solo puedes usar los archivos y conceptos disponibles en la carpeta /var/www/html/interfacesweb/001-Planificación de interfaces gráficas/001-Elementos del diseño: percepción visual./101-Ejercicios.
+No utilices librerías externas ni estructuras que no hayas visto hasta ahora.
+Asegúrate de mantener el formato y los estilos consistentes con lo aprendido en clase.
+Criterios de evaluación
+
+Introducción y contextualización (25%): El ejercicio debe mostrar una comprensión adecuada del contexto del diseño web y cómo aplicar los conceptos aprendidos.
+Desarrollo técnico correcto y preciso (25%): Los elementos deben estar correctamente estructurados y estilizados según las indicaciones dadas.
+Aplicación práctica con ejemplo claro (25%): El ejercicio debe demostrar una aplicación práctica de los conceptos, mostrando el uso de variables CSS y técnicas de centrado.
+Cierre/Conclusión enlazando con la unidad (25%): El ejercicio debe cerrar con una conclusión que haga un enlace con lo aprendido en la unidad sobre estructura y estilo en interfaces web.
+    
+    
+    -->
+<!--________________________MENU______________________________-->
+    <header>
+        <nav>
+            <ul>
+
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Servicios</a></li>
+                <li><a href="#">Proyectos</a></li>
+                <li><a href="#">Contacto</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+<!--________________________MAIN / DESTACADA______________________________-->
+    <main>
+        <section id="destacada">
+
+
+            <div>
+                
+                <img src="1280px-Boss_hornet_02.png" id="hero" class="bailando">
+    
+                <div id="texto">
+                    <h3>Hornet de fiesta</h3>
+                    <p>Clickar para ponerle una tema</p>
+                </div>
+            </div>
+        </section>
+        <section class="tropa">
+            <div>
+                <img src="Sherma_Singing.webp" class="bailando" id="sherma" alt="">
+            </div>
+            <div>
+                <img src="caballero.png" class="bailando" id="caballero" alt="">
+            </div>
+            <div>
+                <img src="Trobbio_idle.png" class="bailando" id="trobio" alt="">
+            </div>
+            <div>
+                <img src="Fleamaster_Mooshka.png" class="bailando" id="pulga" alt="">
+            </div>
+            <div>
+                <img src="Nuu_Idle.png" class="bailando" id="nu" alt="">
+            </div>
+
+        </section>
+    </main>
+
+     <!-- ===== SCRIPT DE AUDIO ===== -->
+    <script>
+        // Lista de pistas disponibles
+        const pistas = [
+            "Sherma-Remix.mp3",
+            "corazon.mp3",
+            "Shakra.mp3"
+        ];
+
+        let audioActual = null; // Para controlar si ya hay uno sonando
+
+        document.getElementById("hero").addEventListener("click", () => {
+            // Si había un audio sonando, detenerlo
+            if (audioActual) {
+                audioActual.pause();
+                audioActual.currentTime = 0;
+            }
+
+            // Elegir una pista aleatoria
+            const pistaAleatoria = pistas[Math.floor(Math.random() * pistas.length)];
+
+            // Crear nuevo objeto de audio
+            audioActual = new Audio(pistaAleatoria);
+            audioActual.play();
+        });
+
+        // ==== GRADIENTE ALEATORIO ====
+        function colorAleatorio() {
+            return `rgb(${Math.floor(Math.random()*256)}, ${Math.floor(Math.random()*256)}, ${Math.floor(Math.random()*256)})`;
+        }
+
+        function cambiarGradiente() {
+            const color1 = colorAleatorio();
+            const color2 = colorAleatorio();
+            document.body.style.background = `linear-gradient(135deg, ${color1}, ${color2})`;
+        }
+
+        // Cambiar cada segundo
+        setInterval(cambiarGradiente, 1000);
+
+        // Inicializar al cargar
+        cambiarGradiente();
+
+        // ==== EFECTO DE BAILE (INVERTIR IMAGEN EN X) ====
+        const imagenes = document.getElementsByClassName("bailando");
+        let invertida = false;
+
+        setInterval(() => {
+        invertida = !invertida;
+        for (let i = 0; i < imagenes.length; i++) {
+            imagenes[i].style.transform = invertida ? "scaleX(-1)" : "scaleX(1)";
+        }
+        }, 500);
+
+    </script>
+
+    <footer>
+
+    </footer>
+    
+</body>
+</html>
