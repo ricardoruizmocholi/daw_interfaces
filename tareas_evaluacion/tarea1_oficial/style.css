@@ -32,7 +32,11 @@ nav ul li a {
 nav ul li a:hover {
             color: var(--color-secundario);
             transform: translateY(5%);
+
         }
+#destacada{
+    margin-top: -10%;
+}
 #destacada img{
 
     max-width: 600px;
@@ -47,7 +51,7 @@ nav ul li a:hover {
 #destacada #texto{
 
     position: absolute;
-    top: 71%;
+    top: 51%;
     left: 40.5%; 
     background: rgba(0,0,0,0.5);
     padding: 20px;
