@@ -1,0 +1,30 @@
+
+body{
+    display: flex;
+    flex-direction: column;
+    background-color: #dddddd;
+}
+
+canvas{
+    border: 1px solid #222;
+    border-radius: 2%;
+    max-width: 1200px;
+    margin: 10% auto;
+    display: flex;
+}
+div{
+    width: 400px;
+    height: 75px;
+    position: absolute;
+    top: 80%;
+    left: 40%;
+    background-color: #2222227c;
+    color: aliceblue;
+    text-align: center;
+    font-size: 1.2em;
+    font-family: monospace;
+    border-radius: 2%;
+}
+div p{
+    padding: 2% 5%;
+}

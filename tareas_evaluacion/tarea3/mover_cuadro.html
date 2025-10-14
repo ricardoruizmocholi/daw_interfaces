@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <canvas width="512" height="512" id="lienzo"></canvas>
+  <div><p>Observa cómo el cuadrado se mueve cada segundo</p></div>
+
+  <script>
+    // Obtenemos el lienzo y su contexto
+    const lienzo = document.getElementById("lienzo");
+    const contexto = lienzo.getContext("2d");
+
+    // Posición inicial del cuadrado
+    let x = 50;
+    let y = 50;
+
+    // Función para generar un color aleatorio (solo para hacerlo más visual)
+    function colorAleatorio() {
+      return `rgb(${Math.floor(Math.random() * 256)}, 
+                  ${Math.floor(Math.random() * 256)}, 
+                  ${Math.floor(Math.random() * 256)})`;
+    }
+
+    // Función que dibuja el cuadrado en su posición actual
+    function dibujarCuadrado() {
+      // Limpiamos todo el lienzo antes de volver a dibujar
+      contexto.clearRect(0, 0, lienzo.width, lienzo.height);
+
+      // Elegimos un color distinto cada vez
+      contexto.fillStyle = colorAleatorio();
+
+      // Dibujamos el cuadrado (de 50x50 píxeles)
+      contexto.fillRect(x, y, 50, 50);
+    }
+
+    // Función que actualiza la posición del cuadrado cada segundo
+    function moverCuadrado() {
+      // Cambiamos la posición (puedes ajustar los valores)
+      x += 50; // se mueve 50px a la derecha cada segundo
+      if (x > lienzo.width - 50) {
+        x = 0; // si llega al borde, vuelve al inicio
+        y += 50; // y baja una fila
+        if (y > lienzo.height - 50) {
+          y = 0; // si llega al final, vuelve al principio
+        }
+      }
+
+      // Redibujamos en la nueva posición
+      dibujarCuadrado();
+    }
+
+    // Dibuja el primer cuadrado
+    dibujarCuadrado();
+
+    // Mueve el cuadrado cada segundo (1000 ms)
+    setInterval(moverCuadrado, 500);
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+
+    <!--Creamos el lienzo-->
+    <canvas width=512 height=512 id="lienzo"></canvas>
+    <div><p>Presiona dentro del lienzo para cambiar el color de fondo</p></div>
+    <script>
+
+      //funcion para cambiar de color aleatoriamente
+      function colorAleatorio() {
+      return `rgb(${Math.floor(Math.random() * 256)}, 
+                  ${Math.floor(Math.random() * 256)}, 
+                  ${Math.floor(Math.random() * 256)})`;
+    }
+
+    //Función para cambiar color al lienzo
+    function cambiarColorFondo(){
+        const lienzo= document.getElementById('lienzo');
+        const contexto = lienzo.getContext('2d');
+        const color = colorAleatorio();
+        contexto.fillStyle = color;
+        contexto.fillRect(0,0,lienzo.width, lienzo.height);
+     }
+
+     //Llamamos a cambiarColorFondo() cada segundo con setInterval
+     setInterval(cambiarColorFondo,1000);
+
+    </script>
+</body>
+</html>

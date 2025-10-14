@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+    <!--Creamos el lienzo-->
+    <canvas width=512 height=512 id="lienzo"></canvas>
+    <div><p>Presiona dentro del lienzo para cambiar el color de fondo</p></div>
+    <script>
+      // Primero atrapo al elemento
+      const lienzo = document.getElementById("lienzo");
+      // Ahora creo un contexto para dibujar
+      const contexto = lienzo.getContext("2d");
+      // Dibujo un rectángulo
+      //contexto.fillRect(40,40,50,50);
+
+      //Funcion de color aleatorio
+
+      function colorAleatorio(){//damos nombre a la funcion
+        //Creamos una variable que contendrá un rgb aleatordio para dar un color al azar 
+        // usamos el temple string para hacer concatenaciones mas sencillas 
+        //y mediante las funciones Math.floor que redondea hacia bajo y Math.random que da un numero 
+        // aleatorio entre el 0 y el 1 esto lo multiplicamos por 256 que es el número maximo del rgb
+        let colores =`rgb(${Math.floor(Math.random()*256)}, ${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)})`;
+        //retornamos la variable colores que contiene el rgb aleatorio
+        return colores;
+      }
+
+      //Funcion para rellenar el fondo del lienzo
+      function rellenarFondo(color){
+        contexto.fillStyle = color; // fillStyle asingna el color de relleno 
+        contexto.fillRect(0,0,512,512)//Dibujamos un rectangulo del tamaño del lienzo
+
+      }
+
+      //Función para cambiar de color 
+      function cambiarColorFondo(){
+        const nuevoColor = colorAleatorio();//Crear un nuevo color aleatorio 
+        rellenarFondo(nuevoColor);  //llamar a la función para pintar con este color
+      }
+
+      lienzo.addEventListener("click", cambiarColorFondo);
+
+      rellenarFondo("white");
+
+
+    </script>
+    
+</body>
+</html>

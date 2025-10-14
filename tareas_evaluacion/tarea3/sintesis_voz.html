@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h2>Síntesis de voz</h2>
+  <p>Pulsa el botón y escribe un mensaje para escucharlo en voz alta.</p>
+  <button onclick="habla()">Hablar</button>
+
+
+  <script>
+
+    function habla(){
+
+        const mensaje = prompt("Escribe el texto que quiersa que se lea ");
+        if (!mensaje)return; // si el usuario deja vacio el mensaje no hace nada.
+
+        //Creamos un objeto de sintesis de voz
+        const voz = new SpeechSynthesisUtterance(mensaje);
+
+        voz.lang= "es-ES";  //español de españa
+        voz.rate= 1;    //velocidad normal
+        voz.pitch=1; //tono norma
+
+        //Reproducir el mensaje
+        window.speechSynthesis.habla(voz);
+    }
+
+  </script>
+
+</body>
+</html>

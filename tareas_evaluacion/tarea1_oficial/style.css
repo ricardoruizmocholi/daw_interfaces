@@ -1,73 +1,72 @@
 body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            font-family: Arial, sans-serif;/*Desine el tipo de fuente que se usará en la pagina*/
+            min-height: 100vh;/*para que ocupe el 100% de la pantalla*/
+            margin: 0;/*quitar los margenes por defento del navegador*/
+            display: flex;/* Conviete el bodyen un contenedor flexible*/
+            flex-direction: column;/*coloca los elementos hijo uno debajo de otro*/
             transition: background 1s ease; /* Transición suave */
         }
 
 header {
-            background-color: #333;
-            padding: 15px 0;
-            position: sticky;
+            background-color: #333;/*Color de fondo*/
+            padding: 15px 0;/*Espaciado interno arriba y abajo de 15px*/
+            position: sticky; /*hace que el menu quede fijo al hacer scroll*/
         }
 
 nav ul{
 
-    list-style: none;
+    list-style: none; /* Elimina los punto de la lista*/
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    gap: 30px;
+    display: flex; /*coloca los elemetos de la lista en una misma linea*/
+    justify-content: center;/*centra los elementos horizontalmente*/
+    gap: 30px;/*da un espacio entra cada elemento del menu de 30px*/
 
 }
 nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: bold;
+            color: white;/*texto en blanco*/
+            text-decoration: none;/*desactiva el subrayado del link*/
+            font-size: 18px;/*Tamaño de la fuente*/
+            font-weight: bold;/* Texto en negrita*/
         }
-nav ul li a:hover {
-            color: var(--color-secundario);
-            transform: translateY(5%);
+nav ul li:hover {
+            transform: translateY(5%); /*mueve el elemento del menu hacia bajo*/
 
         }
 #destacada{
-    margin-top: -10%;
+    margin-top: -10%; /*Ajusta los margenes a mi gusto*/
 }
 #destacada img{
 
-    max-width: 600px;
-    margin: 200px auto;
-    width: 50%;
-    height: 50%;
-    display: block;
+    max-width: 600px;/*le doy un tamaño maximo de 600px*/
+    margin: 200px auto; /*Centrar la imagen horizontamente y separa borde de la paste superior e inferior */
+    width: 50%;/*ajusto el ancho relativo respecto al contendor*/
+    height: 50%;/*atura relativa*/
+    display: block;/*la hace un bloque para centrala */
     transition: transform 0.3 ease;
-
 }
 
 #destacada #texto{
 
-    position: absolute;
-    top: 51%;
-    left: 40.5%; 
-    background: rgba(0,0,0,0.5);
-    padding: 20px;
-    border-radius: 10px;
+    position: absolute;/*permite colocarlo donde quieres repecto al elemeto flex superior*/
+    top: 51%;/*ajuste repecto a la parte superior*/
+    left: 40.5%; /*ajuste respecto a la izquieda */
+    background: rgba(0,0,0,0.5);/*Se le da un fondo con una traparencia de un 50%*/
+    padding: 20px;/*margen interior de 20 px*/
+    border-radius: 10px;/* suavizar los bordes de la sección de texto*/
 
 }
  h3 {
-            font-size: 2.5em;
-            margin: 0;
-            text-align: center;
-            color: aliceblue;
+            font-size: 2.5em;/*Tamaño texto*/
+            margin: 0;/*eliminar margenes*/
+            text-align: center;/*centrar texto*/
+            color: aliceblue;/*color del texto*/
         }
- p {
+ p {/*idem*/
             font-size: 1.5em;
             margin: 0;
             color: aliceblue;
+            text-align: center;
 
         }
 .tropa{

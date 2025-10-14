@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Lienzo -->
+  <canvas width="512" height="512" id="lienzo"></canvas>
+  <div><p>Haz clic en el lienzo para dibujar un círculo</p></div>
+
+  <script>
+    // Obtenemos el elemento canvas y su contexto
+    const lienzo = document.getElementById('lienzo');
+    const contexto = lienzo.getContext('2d');
+
+    // Reutilizamos la funcion del color aleatoio
+    function colorAleatorio() {
+      return `rgb(${Math.floor(Math.random() * 256)}, 
+                  ${Math.floor(Math.random() * 256)}, 
+                  ${Math.floor(Math.random() * 256)})`;
+    }
+
+    // Función que dibuja un círculo donde el usuario hace clic
+    function dibujarCirculo(evento) {
+      // Calculamos la posición del clic dentro del lienzo
+      const rectangulo = lienzo.getBoundingClientRect(); // posición del canvas en la pantalla
+      const x = evento.clientX - rectangulo.left; // coordenada X relativa al lienzo
+      const y = evento.clientY - rectangulo.top;  // coordenada Y relativa al lienzo
+
+      // Elegimos un color aleatorio para el círculo
+      const color = colorAleatorio();
+
+      // Dibujamos el círculo
+      contexto.beginPath();               // iniciamos el trazo
+      contexto.arc(
+            x, // Valor del centro x
+            y, //Valor del centro y
+            30, //Radio 30
+            0, //desde el angulo 0
+            Math.PI*2 //hasta el angulo 360
+        );
+      contexto.fillStyle = color;         // color de relleno
+      contexto.fill();                    // lo rellenamos
+      contexto.closePath();               // cerramos el trazo
+    }
+
+    // Añadimos el evento click al lienzo
+    lienzo.addEventListener("click", dibujarCirculo);
+    
+  </script>
+    
+</body>
+</html>
