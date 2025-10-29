@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            background-color:rgb(49, 131, 124) ;
+        }
+        header{
+            
+            margin: 0 auto;
+            padding: 20px;
+            width: 100%;
+            height: 15%;
+            background-image: url(ez8yeog7thhc1.png);
+            background-size: cover;
+          box-shadow: 0px 5px 14px rgba(8, 8, 8, 0.726);
+            background-position: center ;
+            margin-bottom: 5%;
+        }
+        header div{
+            display: block;
+            max-width: 600px;
+            width: 300px;
+            margin: auto;
+            padding: 1% 5%;
+            background-color: rgba(204, 202, 202, 0.801);
+            box-shadow: 0px 5px 14px rgba(8, 8, 8, 0.726);
+            border:1px solid white;
+            border-radius: 5px;
+        }
+        header h1{
+            text-align: center;
+            color: rgb(23, 95, 89);
+        }
+        main{
+            display: flex;
+            flex-direction: column;
+            padding: 5% 5%;
+
+            max-width: 1009px;
+            margin: 0 auto;
+            gap: 20px;
+             background-color: rgba(204, 202, 202, 0.801);
+            box-shadow: 0px 5px 14px rgba(8, 8, 8, 0.726);
+            border:1px solid white;
+            border-radius: 5px;
+        }
+
+        /* Estilo general para los selectores */
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            margin-top: 8px;
+            border: 2px solid rgb(23, 95, 89);
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.85);
+            font-size: 16px;
+            color: rgb(23, 95, 89);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            appearance: none; /* elimina flecha por defecto en algunos navegadores */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg width='10' height='10' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 7L10 12L15 7' stroke='%23235F59' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 12px;
+        }
+
+        /* Hover y focus para interacción */
+        select:hover, select:focus {
+            border-color: rgb(49, 131, 124);
+            box-shadow: 0 0 8px rgba(23,95,89,0.5);
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+
+        /* Opciones del select (en navegadores que lo soportan) */
+        option {
+            padding: 10px;
+            background-color: white;
+            color: rgb(23,95,89);
+        }
+
+        /* Mejor estilo para los article que contienen los select */
+        article {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: rgba(204, 202, 202, 0.6);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+        }
+
+        article:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Mapa de navegación */
+        #mapa {
+            background: rgba(23,95,89,0.15);
+            color: rgb(23,95,89);
+            font-weight: 600;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid rgba(23,95,89,0.5);
+            box-shadow: inset 0 0 5px rgba(23,95,89,0.2);
+            transition: all 0.3s ease;
+        }
+
+        #mapa:hover {
+            background: rgba(23,95,89,0.25);
+            box-shadow: inset 0 0 10px rgba(23,95,89,0.3);
+        }
+
+        /* Efecto “cristal” general para el main */
+        main {
+            backdrop-filter: blur(6px);
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+    <header>
+
+        <div>
+            
+            <h1 id="titulo">VideoFest</h1>
+        </div>
+
+    </header>
+    <main>
+        <article class="1">
+            <label for="categoria"> Categoria principal: </label>
+            <select  id="categoria"> 
+                <option value="">-- Seleccione la categoria --</option>
+            </select>
+
+        </article>
+        
+        <article class="2">
+            <label for="subcategoria"> subcategoria: </label>
+            <select  id="subcategoria"> 
+                <option value="">-- Seleccione la subcategoria --</option>
+            </select>
+
+        </article>
+
+        <div id="mapa"> Mapa de navegaión : Ninguna selección</div>
+       
+    </main>
+    <script>
+
+        //Definimos las variables en una constante como un bojetos con atributos donde las categorias son arrays y contienen las subcategorias
+        const categoria_principal = {
+            "Acción": ["Shooter", "Lucha", "MOBA"],
+            "Aventura" : ["Mundo abierto","RPG", "Plataformas"],
+            "Simulacion" : ["Granjas","Aviación","Pesca"],
+            "Puzzles" : ["Matematico", "Perpectiva","logicos"]
+        }
+
+        //Cargar las categorias principales
+        
+        //Guardamos los indentificadores de las seccions en variable mediante el DOM
+        const selectCategoria = document.getElementById("categoria");
+        const selectSubcategoria = document.getElementById("subcategoria");
+        const mapa = document.getElementById("mapa");
+
+        //Recorremos el objeto de categorias y creamos una etiqueta <option> para cada una
+         for(let categoria in categoria_principal){
+            // Creamos una etiqueta option
+            let option = document.createElement("option");
+            // Le da el valor interno el nombre de la categoria
+            option.value = categoria;
+            option.textContent = categoria;
+
+            // escribe la etiqueta option en la seccion categoria
+            selectCategoria.appendChild(option);
+        }   
+
+        //escucahr cambios en el evento de cambiar en el select
+        //que tiene que pasar cuando cambien de categoria en el select de 
+        // subcategoria salgan solo las sub de la categoria seleccionada
+        selectCategoria.addEventListener("change",function(){
+            //guarda el valor de la categoria
+            
+
+            const seleccion = this.value;
+            const subcategorias = categoria_principal[seleccion];
+            //reseteamos  el contenido previa antes de relleanarlo de nuevo con innnrHTML
+            selectSubcategoria.innerHTML ='<option value="">-- Selecciona una subcategoría --</option>';
+            //bucle foreach  para recorrer el array de subcategoria
+            
+            subcategorias.forEach(sub => {
+
+                const option = document.createElement("option");
+                option.value = sub;
+                option.textContent = sub;
+                selectSubcategoria.appendChild(option);
+
+            });
+
+            actualizarMapa();
+        
+        })
+
+        //al cambiar de sub categorio actualiza el mapa de navegacción
+        selectSubcategoria.addEventListener("change",actualizarMapa);
+
+        function actualizarMapa(){
+            mapa.textContent = `Mapa de navgación: ${selectCategoria.value} → ${selectSubcategoria.value}`;
+        }
+            
+
+    </script>
+</body>
+</html>

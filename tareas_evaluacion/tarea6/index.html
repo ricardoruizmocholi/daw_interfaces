@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #15003b;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    input {
+      padding: 0.5rem;
+      border: none;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+      width: 75%;
+    }
+    input[type="submit"]{
+        width: 80%;
+        background-color: coral;
+        color: white;
+    }
+
+    #listaPeliculas li {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    padding: 10px 10px;
+    margin: 8px 0;
+    list-style: none;
+    margin-right: 12%;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    /* Efecto al pasar el ratón */
+    #listaPeliculas li:hover {
+        background: rgba(255, 255, 255, 0.25);
+        transform: scale(1.03);
+    }
+
+    
+    button {
+      padding: 0.5rem 1rem;
+      background-color: #8a00ff;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #cbaaff;
+      color: #15003b;
+    }
+
+    #mensajeError {
+      color: #ff8080;
+      margin-top: 0.5rem;
+      font-weight: bold;
+    }
+    .formulario{
+
+        max-width: 1200px;
+        margin: 5% auto;
+        height: 70vh;
+        background: rgba(255, 255, 255, 0.15);
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        border-radius: 10px;
+        
+        /*Efecto de crital */
+        backdrop-filter: blur(10px);/*Difumina el fondo detras*/
+
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+    }
+
+  </style>
+</head>
+<body>
+    <header></header>
+    <main>
+        <div class="formulario">
+
+             <h1>🎬 Lista de películas</h1>
+            
+            <form  id="formPeliculas">
+                <input type="text" id="titulo" placeholder="Titulo de la pelicula">
+                <input type="submit" value="Añadir pelicula">
+                <p id="mensajeError"></p>
+            </form>
+
+            <!-- Lista donde se añadiran las peliculas-->
+
+            <ul id="listaPeliculas"></ul>
+
+
+        </div>
+        <script>
+            // seleccionamos los elementos del DOM que usaremos
+            const form = document.getElementById("formPeliculas");
+            const Titulo = document.getElementById("titulo");
+            const mensajeError = document.getElementById("mensajeError");
+            const listaPeliculas= document.getElementById("listaPeliculas");
+        
+            //Funcion para validar el titulo 
+        function validarTitulo(titulo){
+            //quitare los espacios en blaco al principio y al final con trim
+            if(titulo.trim() ===""){
+                //Si el titulo esta vacio o solo se ha pueso espacios en blaco entrará y saldrá el siguiente mensaje
+                return "El título no se puede dejar en blanco"
+            } else if(titulo.trim().length < 3){
+                //Si un titulo no tiene tres caracteres minimos estrará aqui una putada para quien quiera ver It
+                return "El título debe tener al menos 3 caracteres.";
+            }else{
+                return ""; //si no hay errores, devuelve una cadena vacia
+            }
+        }
+        // usamos el DOM addEventListener para cuando se clicle en el evento des sumit del formulario imprima en la lista o saque un mensaje de error
+        form.addEventListener("submit", function(evento){
+            evento.preventDefault();//evitamos asi que recarge la pagina automaticamente
+
+            const titulo = Titulo.value; //Obtiene el texto escrito por el usuario
+            const error = validarTitulo(titulo); // Llama a la funcion creada con anterioridad 
+
+            if (error !== ""){
+                //si hay un mensaje de error entrará 
+                mensajeError.textContent = error;
+            }else{
+                //si no hay error:
+                mensajeError.textContent = ""; //asi limpiamos cualquier error previo
+            
+                // Creamos un elemento de lista con el titulo
+
+                const nuevaPelicula = document.createElement("li");
+                nuevaPelicula.textContent = titulo;
+
+                // Lo añadimos a la lista 
+                listaPeliculas.appendChild(nuevaPelicula);
+
+                // Vacía el campo de texto
+                Titulo.value = "";
+
+            }
+        })
+        
+        
+        
+        
+        
+        
+        
+        </script>
+    </main>
+</body>
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juegos Web</title>
+  <style>
+    /* 🎮 ESTILOS GENERALES */
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #1e1e2f, #2e005e);
+      color: #f2f2f2;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: linear-gradient(90deg, #6a00f4, #b400ff);
+      text-align: center;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2.5em;
+      color: #fff;
+      letter-spacing: 2px;
+      text-shadow: 0 0 8px #000;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      padding: 10px 0;
+      margin: 0;
+    }
+
+    nav li {
+      background: rgba(255,255,255,0.1);
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    nav li:hover {
+      background: #ff0077;
+      transform: scale(1.1);
+    }
+
+    main {
+      height: 70hv;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.1);
+    }
+
+    section {
+      display: none;
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    h2 {
+      color: #ff79c6;
+      border-bottom: 2px solid #ff79c6;
+      padding-bottom: 10px;
+    }
+
+    ul {
+      padding: 0;
+    }
+
+    li {
+      list-style: none;
+      background: rgba(255,255,255,0.1);
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    li:hover {
+      background: rgba(255,255,255,0.25);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #2a004e;
+      margin-top: 40px;
+      color: #ccc;
+    }
+
+    /* Opiniones */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    input, textarea {
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      resize: none;
+      font-family: inherit;
+    }
+
+    button {
+      background: #ff0077;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #ff4fa5;
+    }
+
+    .opinion {
+      background: rgba(255,255,255,0.15);
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="titulo"></h1>
+    <nav>
+      <ul id="menu"></ul>
+    </nav>
+  </header>
+  
+  <main>
+    <section id="juegos" class="active">
+      <h2>Artículos destacados</h2>
+      <ul id="lista_articulos"></ul>
+    </section>
+
+    <section id="noticias">
+      <h2>Noticias recientes</h2>
+      <ul id="lista_noticias"></ul>
+    </section>
+
+    <section id="recomendaciones">
+      <h2>Recomendaciones</h2>
+      <ul id="lista_recomendaciones">
+        <li>Prueba “Celeste” si te gustan los retos</li>
+        <li>“Hades” es un imprescindible del género roguelike</li>
+        <li>Si prefieres historia, “The Last of Us” es ideal</li>
+      </ul>
+    </section>
+
+    <section id="foro">
+      <h2>Foro de la comunidad</h2>
+      <p>💬 Próximamente disponible...</p>
+    </section>
+
+    <section id="opiniones">
+      <h2>Opiniones de usuarios</h2>
+      <form id="formOpinion">
+        <input type="text" id="nombre" placeholder="Tu nombre" required>
+        <textarea id="comentario" placeholder="Escribe tu opinión..." rows="3" required></textarea>
+        <button type="submit">Enviar opinión</button>
+      </form>
+      <div id="listaOpiniones"></div>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 - Comunidad Videojuegos Web
+  </footer>
+
+  <script>
+    // Variables de contenido
+    const titulo_sitio = "🎮 Videojuegos La Seda";
+    const menu_items = ["Juegos", "Noticias", "Recomendaciones", "Foro", "Opiniones"];
+    const titulos_articulos = [
+      "Juego del Mes: Hollow Knight",
+      "Top 10 Mejores Juegos Indie",
+      "Nuevos Lanzamientos de Octubre"
+    ];
+    const titulos_noticias = [
+      "Nueva Actualización del Juego X",
+      "Jugador Destacado del Mes",
+      "Evento Online este Fin de Semana",
+      "Patchnotes 2.0: Grandes Mejoras",
+      "Nueva Consola en Camino"
+    ];
+
+    // Asignar título
+    document.getElementById("titulo").textContent = titulo_sitio;
+
+    // Crear menú
+    const menu = document.getElementById("menu");
+    menu_items.forEach(item => {
+      const li = document.createElement("li");
+      li.textContent = item;
+      li.addEventListener("click", () => mostrarSeccion(item.toLowerCase()));
+      menu.appendChild(li);
+    });
+
+    // Cargar artículos
+    const listaArticulos = document.getElementById("lista_articulos");
+    titulos_articulos.forEach(titulo => {
+      const li = document.createElement("li");
+      li.textContent = titulo;
+      listaArticulos.appendChild(li);
+    });
+
+    // Cargar noticias
+    const listaNoticias = document.getElementById("lista_noticias");
+    titulos_noticias.forEach(titulo => {
+      const li = document.createElement("li");
+      li.textContent = titulo;
+      listaNoticias.appendChild(li);
+    });
+
+    // Mostrar secciones dinámicamente
+    function mostrarSeccion(nombre) {
+      document.querySelectorAll("main section").forEach(sec => sec.classList.remove("active"));
+      const seccion = document.getElementById(nombre);
+      if (seccion) seccion.classList.add("active");
+    }
+
+    // Opiniones dinámicas
+    const form = document.getElementById("formOpinion");
+    const listaOpiniones = document.getElementById("listaOpiniones");
+
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      const nombre = document.getElementById("nombre").value;
+      const comentario = document.getElementById("comentario").value;
+
+      const div = document.createElement("div");
+      div.classList.add("opinion");
+      div.innerHTML = `<strong>${nombre}</strong>: ${comentario}`;
+      listaOpiniones.appendChild(div);
+
+      form.reset();
+    });
+  </script>
+</body>
+</html>

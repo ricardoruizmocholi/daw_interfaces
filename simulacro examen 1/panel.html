@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+   
+
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 🌐 GENERAL */
+body {
+  font-family: 'Ubuntu', sans-serif;
+  background-color: #f5f7fb;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* 🧭 HEADER */
+header {
+  background-color: #0044cc;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 5px solid #ffcc00;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+header ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+header ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+header ul li a:hover {
+  color: #ffcc00;
+  text-decoration:  wavy;
+}
+
+/* 🧱 LAYOUT PRINCIPAL */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  gap: 20px;
+}
+
+/* 📋 NAV LATERAL */
+nav {
+    list-style: none;
+  flex: 1;
+  background-color: #0044cc;
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+nav h2 {
+  font-size: 1.2rem;
+  text-align: center;
+  border-bottom: 2px solid #ffcc00;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+nav ul{
+    list-style: none;
+}
+
+nav button {
+  list-style: none;
+  background-color: #ffcc00;
+  color: #0044cc;
+  border: none;
+  padding: 10px;
+  margin-bottom: 15%;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 100px;
+}
+
+nav button:hover {
+  background-color: #ffd633;
+  transform: translateY(-2px);
+}
+
+/* 🗂️ SECCIÓN PRINCIPAL */
+section {
+  flex: 7;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+section h2 {
+  color: #0044cc;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #ffcc00;
+  padding-bottom: 8px;
+}
+
+/* 📜 LISTADO DINÁMICO */
+#lista_dinamica ul {
+  list-style: none;
+  padding: 0;
+}
+
+#lista_dinamica li {
+  background-color: #f0f4ff;
+  border-left: 5px solid #0044cc;
+  margin-bottom: 10px;
+  padding: 10px 15px;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#lista_dinamica li:hover {
+  background-color: #eaf0ff;
+}
+
+/* 🦶 FOOTER */
+footer {
+  background-color: #0044cc;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  border-top: 5px solid #ffcc00;
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: #ffcc00;
+  text-decoration: none;
+}
+
+footer a:hover {
+  transform: scale(1.3rem);
+}
+
+/* 🪟 MODAL (si existe en el HTML) */
+#bloque_modal{
+   display: none;
+   position: absolute;
+   width: 100%;
+   height: 100%; 
+   background-color: #eaf0ff93;
+}
+#modal {
+    position: absolute;
+    top: 25%;
+    left: 40%;
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  width: 400px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+#modal input {
+  width: 100%;
+  border: 2px solid #0044cc;
+  border-radius: 6px;
+  padding: 8px;
+  margin-top: 10px;
+}
+
+#modal button {
+  background-color: #0044cc;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+#modal button:hover {
+  background-color: #002a80;
+}
+
+  </style>
+</head>
+<body>
+    <header>
+        <h1>Mi titulo</h1>
+        <ul>
+            <li><a href="">Inicio</a></li>
+            <li><a href="">Contexto</a></li>
+            <li><a href="">Contacto</a></li>
+        </ul>
+    </header>
+    <main>
+        
+        <nav>
+            <h2>Menu lateral</h2>
+            <ul>
+                <li><button type="button">Boton 1</button>🦁​</li>
+                <li><button type="button">Boton 2</button>🦁​</li>
+                <li><button type="button">Boton 3</button>🦁​</li>
+                <li><button type="button" onclick="abrirModal()">Añadir ➕​</button>🦁​</li>
+            </ul>
+        </nav>
+        <section id="lista_dinamica">
+            <h2>Lista dinamica</h2>
+
+        </section>
+        
+        <script>
+            ////////Lista dinamica en select
+            //let lista = ["Manzana","Pera","Maracuya","Fresa","Pomelo","Yuca","Limon","Naranja"];
+            const lista_dinamica = document.querySelector("#lista_dinamica");
+            const ul = document.createElement("ul");
+            fetch("datos.json")
+            .then(res => res.json())
+            .then(datos => {
+                //Crea el ul
+
+                datos.forEach(elemento => {
+                    const li =document.createElement("li");
+                    li.textContent = elemento.nombre;
+                    ul.appendChild(li);
+                });
+                lista_dinamica.appendChild(ul);
+            })
+            /*
+            
+            let ul = document.createElement("ul");
+            for(let i=0; i<lista.length;i++){
+                let li = document.createElement("li");
+                li.textContent=lista[i]; 
+                ul.appendChild(li);
+            }
+            lista_dinamica.appendChild(ul);
+            */
+            </script>
+    </main>
+    <div id="bloque_modal">
+        <div id="modal">
+            <h2>Añadir elementos a la lista</h2>
+            <input type="text" id="nuevo_elemento" name="nombre" placeholder="nobre del elemento a guardar">
+            <input type="button" value="Guardar" onclick="cerrarModal()">
+
+        </div>
+    </div>
+    <script>
+        ////// Bloque modal
+        function abrirModal(){
+            const bloque_modal = document.querySelector("#bloque_modal");
+            bloque_modal.style.display= "flex";
+        }
+        function cerrarModal(){
+            const bloque_modal = document.querySelector("#bloque_modal");
+            bloque_modal.style.display= "none";
+
+            const input = document.querySelector("#nuevo_elemento");
+            //Quitar espacios en blanco
+            const valor = input.value.trim();
+
+            // Si valor no esta vacio
+            if (valor){
+                const li = document.createElement("li");
+                li.textContent = valor;
+                ul.appendChild(li);
+                
+            }else{
+                alert("Por favor , escribe un nombre valido.");
+            }
+         }
+
+
+    </script>
+    <footer>
+            <h4>Ricardo</h4> 
+            <p><a href="">correoricardo@correo.org</a></p>
+        </footer>
+</body>
+</html>

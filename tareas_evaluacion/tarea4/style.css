@@ -1,0 +1,73 @@
+/* ----- ESTILOS GENERALES DEL DOCUMENTO ----- */
+body {
+  font-family: Arial, sans-serif;   /* Define el tipo de letra  */
+  margin: 0;                        /* Elimina el margen exterior por defecto del navegador */
+  padding: 0;                       /* Elimina el relleno interior por defecto del navegador */
+  background-color: #fafafa;        /* Color de fondo general claro */
+  color: #333;                      /* Color del texto en tono gris oscuro */
+}
+
+/* ----- HEADER ----- */
+header {
+  background-color: #222;           /* Fondo oscuro  */
+  color: white;                     /* Texto en blanco  */
+  padding: 40px;                    /* Espaciado interior  */
+  text-align: center;               /* Centra el texto  */
+}
+
+/* ----- SECCIONES PRINCIPALES ----- */
+section {
+  padding: 30px;                    /* Espacio interior alrededor del contenido */
+  max-width: 900px;                 /* Limita el ancho máximo del contenido */
+  margin: auto;                     /* Centra horizontalmente la sección  */
+}
+
+/* ----- LISTA  ----- */
+ul {
+  list-style-type: none;            /* Quita los puntos de la lista */
+  padding: 0;                       /* Elimina el relleno interno por defecto */
+}
+
+/* ----- CADA ELEMENTO DE LA LISTA ----- */
+li {
+  margin-bottom: 40px;              /* Espacio inferior entre cada juego */
+  background: #f0f0f0;              /* Fondo gris claro para destacar cada bloque */
+  padding: 20px;                    /* Espacio interno dentro de cada bloque */
+  border-radius: 10px;              /* Bordes redondeados para un estilo más suave */
+  box-shadow: 0px 5px  15px  #22222271; /*Sobra suave para resaltar el bloque*/
+}
+
+/* ----- CONTENEDOR FLEXIBLE ----- */
+.div {
+  display: flex;                    /* Activa el modelo Flexbox para alinear elementos en fila */
+  flex-direction: row;              /* Coloca los elementos (imagen y texto) en una misma fila */
+  gap: 5%;                          /* Deja un espacio del 5% entre los elementos hijos */
+}
+
+/* ----- IMÁGENES DE LOS JUEGOS ----- */
+img {
+  height: 500px;                    /* Fija la altura a 500px */
+  flex: 2;                          /*  Proporción de espacio que ocupa dentro del contenedor flex */
+  margin: 10px 0;                   /* Añade un pequeño margen vertical */
+  border-radius: 5px;               /* Bordes ligeramente redondeados para estética */
+}
+
+/* ----- PÁRRAFOS  ----- */
+.div p {
+  flex: 2;                          /* Asigna el mismo espacio proporcional que la imagen */
+}
+
+/* ----- TÍTULOS DE CADA JUEGO ----- */
+h3 {
+  text-align: center;               /* Centra el texto del título */
+  font-size: 2em;                   /* Aumenta el tamaño de letra  */
+}
+
+/* ----- PIE DE PÁGINA ----- */
+footer {
+  background-color: #222;           /* Fondo oscuro para contrastar con el resto del contenido */
+  color: white;                     /* Texto en blanco para buena visibilidad */
+  text-align: center;               /* Centra el texto del pie de página */
+  padding: 15px 0;                  /* Añade espacio arriba y abajo del texto */
+  margin-top: 40px;                 /* Deja un margen superior para separarlo  */
+}

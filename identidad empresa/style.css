@@ -2,8 +2,8 @@
 
 
 :root{
-
-  --color-principal: #2e4585;
+    /*Aqui declaro las variables css que serán constantes a lo largo del manual coorporativo*/
+  --color-principal: #2e4585; 
   --color-secundario: #326b8b;
   --color-terciario: #61a4a8;
   --fuente-principal: "Inter", sans-serif;
@@ -12,17 +12,17 @@
 
 body {
   font-family: var(--fuente-principal);
-  margin: 0;
-  scroll-behavior: smooth; /* ✅ Scroll suave */
+  margin: 0; /* Quitas el margen del body*/
+  scroll-behavior: smooth; /*  Scroll suave */
 }
 
 .numeracion {
   position: absolute;            /* Se posiciona relativa al #indice */
-  bottom: 40px;                  
-  right: 40px;                   
+  bottom: 40px;                  /* Margen respecto abajo*/
+  right: 40px;                   /* Margen respecto a la derecha de la pantalla*/
   font-size: 16px;               
   color: #aaa;                  
-  font-weight: 300;             
+  font-weight: 300;             /* grosor de la fuente*/
   letter-spacing: 1px;           /*  espaciado entre letras */
 }
 
@@ -32,60 +32,59 @@ body {
   left: 40px;                   
   font-size: 16px;               
   color: var(--color-principal); 
-  opacity: 0.5;                 
+  opacity: 0.5;                   /*Establece a opacidad para dejarlo como una marca de agua*/
   font-weight: 300;             
   letter-spacing: 1px;           /*  espaciado entre letras */
 }
 
-/* Secciones */
+/* Establezco el Css estardar para todas las secciones */
 section {
-  max-width: 1200px;   /* 🔑 ancho máximo de la web */
-  margin: 0  auto; 
-  height: 90vh;
+  max-width: 1200px;   /*  ancho máximo de la web */
+  margin: 0  auto;     /* Margenes de la sección para que se centre en la pantalla*/
+  height: 90vh;         /*Altura de la sección */
   color: #444;
   position: relative;
-  border-bottom: 5px solid #202020;
+  border-bottom: 5px solid #202020; /* Borde abajo de cada sacción como separdor*/
 }
 
 /*------------------------------------------------------*/
 
 /* Encabezado */
 header {
-  background: #ffffff; 
-  display: flex;
-  justify-content: center;
-  color: var(--color-principal);
-  
-  position: sticky;
-  top: 0;
+  background: #ffffff; /*color de fonde*/
+  display: flex;          /* bloque tipo fles*/
+  justify-content: center; /* centrado del bloque de forma horizontal*/
+  color: var(--color-principal); 
+  position: sticky;         /*Sticky para que permazca arriba al hacer scrol*/
+  top: 0;               
   padding-top: 1.5%;
-  padding-bottom: 0.5%;
-  z-index: 1000;
-  box-shadow: 0 2px 5px #1e40af26;
+  padding-bottom: 0.5%;   /*Margen interno*/
+  z-index: 1000;          /* Para que se sobreponga el resto de bloques de la web*/
+  box-shadow: 0 2px 5px #1e40af26; /*Bloque de sombras*/
 }
 
 /* Menú de navegación */
 nav ul {
-  list-style: none;
-  max-width: 1200px;
-  margin: auto;
-  padding: 0;
-  display: flex;
-  gap: 30px;
+  list-style: none;     /*Elimina la enumeración o puntos de las lista */
+  max-width: 1200px;    
+  margin: auto;           /*Margen externo*/
+  padding: 0;             /*Margen interno */
+  display: flex;         /*Bloque flexible*/
+  gap: 30px;            /* le da un marge a cada elemento del flex*/
   font-size: 16px;
 }
 
-nav li:hover{
+nav li:hover{ /* La da estilo al pasar el ratón por encima del li*/
     background-color: var(--color-principal);
     color: #ffffff;
 }
 
 
-nav a {
+nav a { 
   color: var(--color-principal);
-  text-decoration: none;
+  text-decoration: none;      /*Quitar el subrayado por defecto*/
   font-weight: bold;
-  display: block;          /* 🔑 hace que el enlace ocupe todo el li */
+  display: block;          /*  hace que el enlace ocupe todo el li */
   padding: 5px 5px;   
 }
 
@@ -97,7 +96,7 @@ nav li:hover a {
 
 
 
-/*------------------------------------------------------*/
+/*---------------------Portada---------------------------------*/
 
 
  #portada{
@@ -128,7 +127,7 @@ section div img{
   
 }
 
-/*------------------------------------------------------*/
+/*----------------------------Indice--------------------------*/
 
 
 #indice{
@@ -137,7 +136,7 @@ section div img{
   color: #444;
   position: relative; /*Para que los elemetos absolutos se posicionen respecto a este bloque*/
 }
-#indice .indice{
+#indice .indice{ /*Ajuste para el indice*/
 
   list-style: decimal;
   list-style-position: outside; /*aparecen fuera del texto*/
@@ -165,7 +164,7 @@ section div img{
   padding-left: 10px;
 
 }
-
+/* Para que actue solo sobre la linea 1 2 8 y 10 de la lista*/
 #indice .indice li:nth-child(1),
 #indice .indice li:nth-child(2),
 #indice .indice li:nth-child(8),
@@ -175,7 +174,7 @@ section div img{
   padding-left: 10px;
 
 }
-
+ /* Igual pero con el resto*/
 #indice .indice li:nth-child(3),
 #indice .indice li:nth-child(4),
 #indice .indice li:nth-child(5),
@@ -186,6 +185,7 @@ section div img{
   padding-left: 20px;
 }
 
+/* Css para situar donde quieres la imagen*/
 #indice-imagen {
 
   position: absolute;
@@ -207,18 +207,16 @@ section div img{
 
 }
 
-#indice-imagen img{
-  padding-left: 5%;
-}
 
 
 
-/*------------------------------------------------------*/
+
+/*--------------------------Manifiesto----------------------------*/
 
 
 #manifiesto{
-  display: grid;
-  grid-template-columns: 60% 40%;
+  display: grid;  /*bloque grind*/
+  grid-template-columns: 60% 40%;/* para definir el cantidad de columnas y el porcentaje que ocupan cada una*/
   text-align:left;
   background-color: #f1f1f1;
   position: relative; /*Para que los elemetos absolutos se posicionen respecto a este bloque*/
@@ -267,7 +265,7 @@ section div img{
 .circulo {
   width: 120px;              
   height: 120px;             
-  border-radius: 50%;       
+  border-radius: 50%;       /*Bordes redondos para hacer un circulo de un cuadrado*/
   background-color: var(--color-principal); 
   color: #fff;               
   display: flex;             /*   flex para centrar texto */
@@ -302,7 +300,7 @@ section div img{
   margin-top: 20%;
 
 }
-/*---------------------------;;;;;;;;;;;;;;;;;;;;;;;;;;;*/
+/*---------------------------Logo------------------*/
 
 #logo .img{
   max-width: 1200px;
@@ -320,13 +318,13 @@ section div img{
   color: var(--color-terciario);
 }
 
-/*---------------------------;;;;;;;;;;;;;;;;;;;;;;;;;;;*/
+/*----------------Textura----------------*/
 #textura #isotipo{
   position: flex;
   align-items: center;
   text-align: center;
   width: 30%;
-  border: 2px double #33333380 ;
+  border: 2px double #33333380 ; 
   padding: 5% 5%;
   margin-top: 25%;
   margin-left: 10%;
@@ -335,7 +333,7 @@ section div img{
   margin: 0;
   border: 2px double #33333380 ;
 }
-.lineas{
+.lineas{ /*Para hacer el area de protección*/
   position: absolute;
   left: 10%;
   top: 0%;
@@ -357,7 +355,7 @@ section div img{
 .texto-textura h4{
   color: var(--color-principal);
 }
-/*-------------------------------------------------------*/
+/*-----------------------Tipografia--------------------------------*/
 
 
 #tipografia{
@@ -422,7 +420,7 @@ section div img{
 .bold{
   font-weight: bold;
 }
-/*--------------------------------------------------*/
+/*----------------------Colores----------------------------*/
 
 #colores {
   display: grid;
@@ -480,7 +478,7 @@ section div img{
   color: #444;
 }
 
-/*_____________________________________________________*/
+/*-----------------Negativo-----------------------*/
 
 #version-negativa img{
   height: 40%;
@@ -498,7 +496,7 @@ section div img{
 
 }
 
-/*-----------------------------------------------------------*/
+/*-------------------------Tamaño----------------------------------*/
 
 #tamano {
   padding: 40px;
