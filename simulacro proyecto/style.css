@@ -1,0 +1,44 @@
+/* estilo.css — JOCARSAnews */
+:root{
+  --primario: #0044cc;
+  --secundario: #ffcc00;
+  --fondo: #f5f7fb;
+  --texto: #222;
+  --card-bg: #ffffff;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
+
+*{box-sizing:border-box}
+body{
+  font-family: 'Ubuntu', sans-serif;
+  margin:0; background:var(--fondo); color:var(--texto);
+}
+.site-header{
+  background:var(--primario); color:white; padding:18px 10px; text-align:center; border-bottom:5px solid var(--secundario);
+}
+.site-header h1{margin:0}
+.site-header nav a{color:white; text-decoration:none; margin-left:10px; font-weight:700}
+.container{max-width:1100px;margin:18px auto;padding:0 12px}
+.site-footer{background:var(--primario); color:white; text-align:center; padding:12px; border-top:5px solid var(--secundario); margin-top:30px}
+
+/* Formularios */
+input[type=text], textarea {
+  width:100%;
+  padding:8px;
+  border:1px solid #dfe9ff;
+  border-radius:6px;
+}
+textarea{min-height:120px}
+
+/* Tabla en back */
+.tabla{width:100%; border-collapse:collapse}
+.tabla th, .tabla td {padding:8px 10px; border-bottom:1px solid #eef5ff}
+.tabla th { background:#f0f6ff; color:var(--primario); text-align:left}
+
+/* Botones */
+.btn { background:var(--primario); color:white; border:none; padding:8px 12px; border-radius:6px; cursor:pointer}
+.btn-danger { background:#ff4444; color:white; border:none; padding:6px 10px; border-radius:6px; cursor:pointer}
+
+/* Tarjetas front */
+article.news { background:var(--card-bg); padding:18px; border-radius:10px; margin-bottom:14px; box-shadow:0 6px 18px rgba(0,0,0,0.06) }
