@@ -1,0 +1,26 @@
+[
+    {
+        "nombre": "Zeus",
+        "apellidos": "Olimpo",
+        "email": "zeus@olympus.com",
+        "direccion": "Monte Olimpo",
+        "ciudad": "Cielo",
+        "telefono": "111-111-111"
+    },
+    {
+        "nombre": "Atenea",
+        "apellidos": "Sabiduría",
+        "email": "atenea@olympus.com",
+        "direccion": "Templo de Atenas",
+        "ciudad": "Atenas",
+        "telefono": "222-222-222"
+    },
+    {
+        "nombre": "Hermes",
+        "apellidos": "Mensajero",
+        "email": "hermes@olympus.com",
+        "direccion": "Monte Olimpo",
+        "ciudad": "Olimpo",
+        "telefono": "333-333-333"
+    }
+]

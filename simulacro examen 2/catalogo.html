@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div.producto{
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+            padding: 10px;
+            margin: 10px;
+            width: 150px;
+            display: inline-block;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Titulo Catalogo</h1>
+        <div class="menuinicio">
+            <ul>
+                <li><a href=""></a></li>
+                <li><a href=""></a></li>
+                <li><a href=""></a></li>
+            </ul>
+        </div>
+    </header>
+    <main>
+        <section id="listado">
+
+        </section>
+        <section id="formulario">
+            <form id="formAgregar">
+            <input type="text" id="nombre" placeholder="Nombre del producto">
+            <input type="number" id="precio" placeholder="Precio" step="0.01">
+            <button type="submit">➕ Añadir</button>
+</form>
+        </section>
+    </main>
+    <footer>
+        <h3></h3>
+        <p></p>
+    </footer>
+    <script>
+        fetch("productos.json")
+        .then(r => r.json())
+        .then(datos => {
+            const contenedor = document.getElementById("listado");
+            datos.forEach(prod => {
+            const card = document.createElement("div");
+            card.className = "producto";
+            card.innerHTML = `<h3>${prod.nombre}</h3><p>${prod.precio} €</p>`;
+            contenedor.appendChild(card);
+            });
+        });
+
+        document.getElementById("formAgregar").onsubmit = e => {
+            e.preventDefault();
+            const nombre = document.getElementById("nombre").value.trim();
+            const precio = document.getElementById("precio").value.trim();
+            if (nombre === "" || precio === "") {
+                alert("Rellena ambos campos correctamente");
+                return;
+            }
+            const card = document.createElement("div");
+            card.className = "producto";
+            card.innerHTML = `<h3>${nombre}</h3><p>${precio} €</p>`;
+            document.getElementById("listado").appendChild(card);
+            e.target.reset();
+        };
+    </script>
+</body>
+</html>

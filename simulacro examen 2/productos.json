@@ -1,0 +1,15 @@
+[
+  {"nombre": "Auriculares", "precio": 39.99},
+  {"nombre": "Teclado", "precio": 25.50},
+  {"nombre": "Ratón", "precio": 19.00},
+  {"nombre": "Monitor", "precio": 149.99},
+  {"nombre": "Impresora", "precio": 89.90},
+  {"nombre": "Altavoces", "precio": 45.75},
+  {"nombre": "Webcam", "precio": 32.40},
+  {"nombre": "Micrófono", "precio": 58.00},
+  {"nombre": "Disco duro externo", "precio": 79.99},
+  {"nombre": "Pendrive 64GB", "precio": 12.95},
+  {"nombre": "Tarjeta gráfica", "precio": 249.99},
+  {"nombre": "Cámara réflex", "precio": 499.00},
+  {"nombre": "Tablet", "precio": 229.90}
+]
