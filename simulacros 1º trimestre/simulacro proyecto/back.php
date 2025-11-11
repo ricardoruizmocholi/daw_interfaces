@@ -146,12 +146,12 @@ if (!empty($_SESSION['is_admin'])) {
                 <tr><th>ID</th><th>Título</th><th>Autor</th><th>Fecha</th><th></th></tr>
               </thead>
               <tbody>
-                <?php foreach($articulos as $a): ?>
+                <?php foreach($articulos as $articulo): ?>
                 <tr>
-                  <td><?= (int)$a['id'] ?></td>
-                  <td><?= htmlspecialchars($a['titulo']) ?></td>
-                  <td><?= htmlspecialchars($a['autor']) ?></td>
-                  <td><?= htmlspecialchars($a['fecha']) ?></td>
+                  <td><?= (int)$articulo['id'] ?></td>
+                  <td><?= htmlspecialchars($articulo['titulo']) ?></td>
+                  <td><?= htmlspecialchars($articulo['autor']) ?></td>
+                  <td><?= htmlspecialchars($articulo['fecha']) ?></td>
                   <td>
                     <form method="post" action="back.php" style="display:inline;">
                       <input type="hidden" name="accion" value="borrar">

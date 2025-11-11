@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bienvenido a Cine Aurora</title>
+    <style>
+      /* ======== Estilos generales (15 min) ======== */
+      :root{
+        --accent:#ff5c5c;
+        --dark:#111;
+        --muted:#666;
+        --bg:#f4f4f6;
+        --card-bg:#ffffff;
+        font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      }
+      *{box-sizing:border-box}
+      body{
+        margin:0;
+        background:var(--bg);
+        color:var(--dark);
+        line-height:1.4;
+      }
+      a{color:inherit;text-decoration:none}
+      ul{margin:0;padding:0;list-style:none}
+
+      /* ======== Encabezado (30 min) ======== */
+      header{
+        position:relative;
+        min-height:320px;
+        display:flex;
+        align-items:center;
+        color:#fff;
+        overflow:hidden;
+      }
+      /* Imagen de fondo representando un cine */
+      header::before{
+        content:"";
+        position:absolute;inset:0;
+        background-image:url('imagenes/cine-fondo.jpg'); /* sustituir por tu imagen */
+        background-size:cover;background-position:center;
+        filter:brightness(0.5) contrast(1.05);
+      }
+      header .overlay{
+        position:relative;z-index:1;padding:32px;max-width:1100px;margin:0 auto;width:100%;
+        display:flex;flex-direction:column;gap:18px;
+      }
+      header h1{font-size:clamp(28px,4vw,44px);margin:0}
+      nav{
+        margin-top:6px;
+      }
+      nav ul{display:flex;gap:14px}
+      nav a{
+        padding:8px 12px;border-radius:8px;background:rgba(255,255,255,0.08);backdrop-filter:blur(4px);
+      }
+
+      /* ======== Contenido principal (45 min) ======== */
+      main{max-width:1100px;margin:28px auto;padding:0 20px}
+      .cartelera-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+      .cartelera-grid{
+        display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;
+      }
+      .card{
+        background:var(--card-bg);border-radius:12px;box-shadow:0 6px 18px rgba(17,17,17,0.06);overflow:hidden;display:flex;flex-direction:column;
+      }
+      .poster{width:100%;height:320px;object-fit:cover;display:block}
+      .card-content{padding:12px;flex:1;display:flex;flex-direction:column}
+      .titulo{font-weight:700;margin-bottom:6px}
+      .resumen{flex:1;color:var(--muted);font-size:14px}
+      .ver-mas{margin-top:10px;align-self:flex-start;padding:8px 10px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);cursor:pointer}
+
+      /* ======== Pie de página (10 min) ======== */
+      footer{background:#0f1720;color:#d8e1ea;padding:28px 20px;margin-top:28px}
+      .footer-container{max-width:1100px;margin:0 auto;display:flex;gap:20px;flex-wrap:wrap;justify-content:space-between}
+      .footer-col{min-width:160px}
+      .social a{display:inline-block;margin-right:10px;padding:8px;border-radius:6px;background:rgba(255,255,255,0.06)}
+
+      /* Responsive */
+      @media (max-width:560px){
+        header{min-height:260px}
+        .poster{height:220px}
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- ======== Encabezado ======== -->
+    <header>
+      <div class="overlay">
+        <h1>Bienvenido a Cine Aurora</h1>
+        <nav aria-label="Navegación principal">
+          <ul>
+            <li><a href="#peliculas">Películas</a></li>
+            <li><a href="#promociones">Promociones</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ======== Contenido principal ======== -->
+    <main>
+      <section id="peliculas" aria-labelledby="peliculas-title">
+        <div class="cartelera-header">
+          <h2 id="peliculas-title">En cartelera</h2>
+          <p class="muted">Actualizado recientemente</p>
+        </div>
+
+        <div class="cartelera-grid">
+          <!-- Ejemplo de tarjeta de película (repite y adapta según necesites) -->
+          <article class="card" role="article" aria-label="Película: La aventura">
+            <img class="poster" src="imagenes/poster-aventura.jpg" alt="Póster de La aventura">
+            <div class="card-content">
+              <div class="titulo">La aventura</div>
+              <div class="resumen">Un grupo de amigos emprende un viaje inesperado que pondrá a prueba su amistad y su valor. Comedia y acción para toda la familia.</div>
+              <button class="ver-mas" aria-haspopup="dialog">Ver más</button>
+            </div>
+          </article>
+
+          <article class="card" role="article" aria-label="Película: Noche de misterio">
+            <img class="poster" src="imagenes/poster-misterio.jpg" alt="Póster de Noche de misterio">
+            <div class="card-content">
+              <div class="titulo">Noche de misterio</div>
+              <div class="resumen">Un thriller psicológico en el que nada es lo que parece. Ideal para los fans del suspense y los giros inesperados.</div>
+              <button class="ver-mas" aria-haspopup="dialog">Ver más</button>
+            </div>
+          </article>
+
+          <article class="card" role="article" aria-label="Película: Animales en la ciudad">
+            <img class="poster" src="imagenes/poster-animales.jpg" alt="Póster de Animales en la ciudad">
+            <div class="card-content">
+              <div class="titulo">Animales en la ciudad</div>
+              <div class="resumen">Una divertida película de animación que sigue las peripecias de un grupo de mascotas urbanas.</div>
+              <button class="ver-mas" aria-haspopup="dialog">Ver más</button>
+            </div>
+          </article>
+
+          <!-- Añade más tarjetas aquí según la planificación -->
+        </div>
+      </section>
+
+      <!-- Sección de promociones y contacto (marcadores) -->
+      <section id="promociones" style="margin-top:28px">
+        <h3>Promociones</h3>
+        <p>Consulte nuestras promociones semanales y descuentos para estudiantes y familias.</p>
+      </section>
+
+      <section id="contacto" style="margin-top:18px">
+        <h3>Contacto</h3>
+        <p>Dirección: Calle Falsa 123 · Teléfono: 900 123 456 · Email: info@cineaurora.local</p>
+      </section>
+
+    </main>
+
+    <!-- ======== Pie de página ======== -->
+    <footer>
+      <div class="footer-container">
+        <div class="footer-col">
+          <h4>Acerca de</h4>
+          <p style="max-width:280px">Cine Aurora es un cine local comprometido con ofrecer una experiencia cómoda y películas para todos los públicos.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Enlaces</h4>
+          <ul>
+            <li><a href="#">Política de privacidad</a></li>
+            <li><a href="#">Ayuda</a></li>
+            <li><a href="#">Términos y condiciones</a></li>
+          </ul>
+        </div>
+        <div class="footer-col social">
+          <h4>Síguenos</h4>
+          <a href="#" aria-label="Facebook">Facebook</a>
+          <a href="#" aria-label="Instagram">Instagram</a>
+          <a href="#" aria-label="Twitter">Twitter</a>
+        </div>
+      </div>
+    </footer>
+
+  </body>
+</html>

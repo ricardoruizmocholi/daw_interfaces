@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title>Gestión de Clientes</title>
+
+    <style>
+      /* --- Importamos una fuente local llamada Ubuntu --- */
+      @font-face {
+        font-family: ubuntu;
+        src: url(Ubuntu-R.ttf);
+      }
+
+      /* --- Ajustes básicos del documento --- */
+      html, body {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        padding: 0;
+        margin: 0;
+        font-family: ubuntu, sans-serif;
+      }
+
+      /* --- Estructura general del body: columna (header, main, footer) --- */
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* --- Encabezado y pie de página con mismo estilo --- */
+      header, footer {
+        background: LightSteelBlue;
+        padding: 10px;
+        text-align: center;
+        font-weight: bold;
+      }
+
+      /* --- Main con dos columnas: nav (izquierda) y section (derecha) --- */
+      main {
+        display: flex;
+        flex: 1;
+      }
+
+      /* --- Menú lateral (nav) con botones apilados --- */
+      nav {
+        background: LightSteelBlue;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 200px;
+      }
+
+      /* --- Estilos de los botones del menú --- */
+      nav button {
+        background: aliceblue;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      /* --- Efecto al pasar el ratón --- */
+      nav button:hover {
+        background: #dce7ff;
+      }
+
+      /* --- Área principal (section) con la tabla --- */
+      section {
+        background: AliceBlue;
+        flex: 1;
+        padding: 20px;
+        overflow-y: auto; /* Permite hacer scroll si hay muchas filas */
+      }
+
+      /* --- Estilo general de la tabla --- */
+      section table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      /* --- Cabecera de la tabla --- */
+      section table thead {
+        background: LightSteelBlue;
+        color: white;
+      }
+
+      /* --- Celdas de la tabla --- */
+      section table td, section table th {
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+        text-align: left;
+      }
+
+      /* --- Botones dentro del section (como crear nuevo) --- */
+      section button {
+        background: LightSteelBlue;
+        border: none;
+        padding: 10px;
+        margin-bottom: 10px;
+        cursor: pointer;
+      }
+
+      /* --- Contenedor del modal (cubre toda la pantalla) --- */
+      #contenedorModal {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.6);
+        display: none; /* Oculto por defecto */
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* --- Ventana del modal --- */
+      #modal {
+        width: 400px;
+        padding: 20px;
+        background: white;
+        box-shadow: 0px 10px 20px black;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      /* --- Campos de texto del modal --- */
+      #modal input {
+        padding: 10px;
+        border: 1px solid grey;
+      }
+
+      /* --- Botones del modal --- */
+      #modal button {
+        background: LightSteelBlue;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ===== ENCABEZADO ===== -->
+    <header>
+      <h2>📋 Panel de Gestión de Clientes</h2>
+    </header>
+
+    <!-- ===== CUERPO PRINCIPAL ===== -->
+    <main>
+      <!-- === Menú lateral === -->
+      <nav>
+        <button id="btnMostrarTodos">Mostrar todos</button>
+        <button id="btnFiltrarValencia">Filtrar por Valencia</button>
+        <button id="btnFiltrarMadrid">Filtrar por Madrid</button>
+        <button id="btnOrdenarAZ">Ordenar A-Z</button>
+        <button id="btnOrdenarZA">Ordenar Z-A</button>
+        <button id="btnNuevoCliente">➕ Nuevo Cliente</button>
+      </nav>
+
+      <!-- === Sección principal con la tabla === -->
+      <section>
+        <h3>Listado de Clientes</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Apellidos</th>
+              <th>Email</th>
+              <th>Dirección</th>
+              <th>Teléfono</th>
+              <th>Localidad</th>
+            </tr>
+          </thead>
+          <tbody id="cuerpoTabla"></tbody> <!-- Aquí se insertan las filas dinámicamente -->
+        </table>
+      </section>
+    </main>
+
+    <!-- ===== PIE DE PÁGINA ===== -->
+    <footer>
+      © 2025 Ricardo Ruiz — Gestión de Clientes Dinámica
+    </footer>
+
+    <!-- ===== MODAL PARA NUEVO CLIENTE ===== -->
+    <div id="contenedorModal">
+      <div id="modal">
+        <h3>Nuevo Cliente</h3>
+
+        <!-- Campos del formulario -->
+        <label>Nombre:</label>
+        <input type="text" id="inputNombre">
+
+        <label>Apellidos:</label>
+        <input type="text" id="inputApellidos">
+
+        <label>Email:</label>
+        <input type="email" id="inputEmail">
+
+        <label>Dirección:</label>
+        <input type="text" id="inputDireccion">
+
+        <label>Teléfono:</label>
+        <input type="text" id="inputTelefono">
+
+        <label>Localidad:</label>
+        <input type="text" id="inputLocalidad">
+
+        <!-- Botones del modal -->
+        <button id="btnGuardarCliente">Guardar Cliente</button>
+        <button id="btnCancelar">Cancelar</button>
+      </div>
+    </div>
+
+    <!-- ====== SCRIPT PRINCIPAL ====== -->
+    <script>
+      // === VARIABLES PRINCIPALES ===
+
+      // Referencia al cuerpo de la tabla
+      const tablaCuerpo = document.getElementById("cuerpoTabla");
+
+      // Botones de menú y modal
+      const botonNuevoCliente = document.getElementById("btnNuevoCliente");
+      const contenedorModal = document.getElementById("contenedorModal");
+      const botonGuardarCliente = document.getElementById("btnGuardarCliente");
+      const botonCancelar = document.getElementById("btnCancelar");
+
+      // Campos del formulario modal
+      const campoNombre = document.getElementById("inputNombre");
+      const campoApellidos = document.getElementById("inputApellidos");
+      const campoEmail = document.getElementById("inputEmail");
+      const campoDireccion = document.getElementById("inputDireccion");
+      const campoTelefono = document.getElementById("inputTelefono");
+      const campoLocalidad = document.getElementById("inputLocalidad");
+
+      // Lista de clientes (se cargará desde el JSON)
+      let listaClientes = [];
+
+      // === CARGA DE DATOS DESDE EL ARCHIVO JSON ===
+      fetch("datos.json") // Llamada al archivo local
+        .then(respuesta => respuesta.json()) // Convertimos a formato JSON
+        .then(datos => {
+          listaClientes = datos;             // Guardamos los datos en el array global
+          mostrarClientes(listaClientes);    // Mostramos en la tabla
+        })
+        .catch(error => console.error("Error al cargar JSON:", error)); // Si falla la carga
+
+      // === FUNCIÓN PARA MOSTRAR CLIENTES EN LA TABLA ===
+      function mostrarClientes(clientes) {
+        tablaCuerpo.innerHTML = ""; // Vacía la tabla antes de rellenarla
+
+        // Recorremos todos los clientes y creamos una fila por cada uno
+        clientes.forEach(cliente => {
+          const fila = document.createElement("tr"); // Crea una nueva fila <tr>
+          fila.innerHTML = `
+            <td>${cliente.Nombre}</td>
+            <td>${cliente.Apellidos}</td>
+            <td>${cliente.Email}</td>
+            <td>${cliente.Direccion}</td>
+            <td>${cliente.Telefono}</td>
+            <td>${cliente.Localidad}</td>
+          `;
+          tablaCuerpo.appendChild(fila); // Añadimos la fila al cuerpo de la tabla
+        });
+      }
+
+      // === MOSTRAR EL MODAL ===
+      botonNuevoCliente.onclick = () => {
+        contenedorModal.style.display = "flex"; // Hacemos visible el modal
+      };
+
+      // === CERRAR EL MODAL ===
+      botonCancelar.onclick = () => {
+        contenedorModal.style.display = "none"; // Ocultamos el modal
+      };
+
+      // === VALIDACIÓN AL SALIR DE UN CAMPO ===
+      // Recorre todos los inputs del modal
+      document.querySelectorAll("#modal input").forEach(campo => {
+        campo.addEventListener("blur", () => { // Cuando el usuario sale del campo
+          if (campo.value.trim() === "") { // Si está vacío
+            campo.style.border = "2px solid red"; // Marca en rojo
+          } else {
+            campo.style.border = "1px solid grey"; // Restablece el borde normal
+          }
+        });
+      });
+
+      // === GUARDAR NUEVO CLIENTE ===
+      botonGuardarCliente.onclick = () => {
+        // Crea un nuevo objeto con los valores del formulario
+        const nuevoCliente = {
+          Nombre: campoNombre.value.trim(),
+          Apellidos: campoApellidos.value.trim(),
+          Email: campoEmail.value.trim(),
+          Direccion: campoDireccion.value.trim(),
+          Telefono: campoTelefono.value.trim(),
+          Localidad: campoLocalidad.value.trim()
+        };
+
+        // Validamos que no haya campos vacíos
+        for (let propiedad in nuevoCliente) {
+          if (nuevoCliente[propiedad] === "") {
+            alert("❌ Todos los campos son obligatorios");
+            return; // Sale de la función si hay un campo vacío
+          }
+        }
+
+        // Añadimos el nuevo cliente a la lista
+        listaClientes.push(nuevoCliente);
+
+        // Actualizamos la tabla con el nuevo cliente
+        mostrarClientes(listaClientes);
+
+        // Ocultamos el modal y limpiamos los campos
+        contenedorModal.style.display = "none";
+        document.querySelectorAll("#modal input").forEach(input => input.value = "");
+      };
+
+      // === BOTONES DE FILTRADO Y ORDENACIÓN ===
+
+      // Muestra todos los clientes originales
+      document.getElementById("btnMostrarTodos").onclick = () => mostrarClientes(listaClientes);
+
+      // Filtra por clientes de Valencia
+      document.getElementById("btnFiltrarValencia").onclick = () => {
+        const clientesFiltrados = listaClientes.filter(cliente => cliente.Localidad === "Valencia");
+        mostrarClientes(clientesFiltrados);
+      };
+
+      // Filtra por clientes de Madrid
+      document.getElementById("btnFiltrarMadrid").onclick = () => {
+        const clientesFiltrados = listaClientes.filter(cliente => cliente.Localidad === "Madrid");
+        mostrarClientes(clientesFiltrados);
+      };
+
+      // Ordena los clientes alfabéticamente de A a Z
+      document.getElementById("btnOrdenarAZ").onclick = () => {
+        const clientesOrdenados = [...listaClientes].sort((a, b) => a.Nombre.localeCompare(b.Nombre));
+        mostrarClientes(clientesOrdenados);
+      };
+
+      // Ordena los clientes alfabéticamente de Z a A
+      document.getElementById("btnOrdenarZA").onclick = () => {
+        const clientesOrdenados = [...listaClientes].sort((a, b) => b.Nombre.localeCompare(a.Nombre));
+        mostrarClientes(clientesOrdenados);
+      };
+    </script>
+  </body>
+</html>
